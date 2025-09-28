@@ -2,8 +2,10 @@ package com.ejemplo.jwtlogin.core.audit;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
