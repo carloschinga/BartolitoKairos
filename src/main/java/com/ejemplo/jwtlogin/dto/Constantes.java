@@ -21,7 +21,7 @@ public class Constantes {
 	public static final String CSC = "CSC-PERU";
 	public static final String SUCCESS = "success";
 	public static final String SCHEMA = "public";
-	public static final String CATALOG = "sigma_db";
+	public static final String CATALOG = "bartolito";
 	public static final Boolean SI = true;
 	public static final Boolean NO = false;
 	public static final String FILE_NAME_BLOB = "blob";
