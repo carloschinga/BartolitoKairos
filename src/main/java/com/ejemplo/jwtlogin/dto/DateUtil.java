@@ -310,6 +310,26 @@ public class DateUtil {
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(ISO_FRONT_FORMAT);
 		return LocalDate.parse(date, inputFormatter);
 	}
+	
+	public static LocalDate toLocalDateKairos(String fecha) {
+	    if (fecha == null || fecha.trim().isEmpty()) {
+	        return null;
+	    }
+
+	    DateTimeFormatter formatter;
+
+	    // Si viene con / => dd/MM/yy
+	    if (fecha.contains("/")) {
+	        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+	    } else {
+	        // Caso anterior yyyyMMdd
+	        formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+	    }
+
+	    return LocalDate.parse(fecha, formatter);
+	}
+
+	
 
 	public static LocalDate of(String date, String format) {
 		if (date == null)
