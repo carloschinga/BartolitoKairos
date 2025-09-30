@@ -34,8 +34,37 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private JwtTokenUtil jwtTokenUtil;
 	@Autowired
 	private UserSesion usersion;
+	
+	@Autowired
+	private JwtUtil jwtUtil; 
+	
 
-	@Override
+	  @Override
+	    protected void doFilterInternal(HttpServletRequest request,
+	                                    HttpServletResponse response,
+	                                    FilterChain filterChain) throws ServletException, IOException {
+
+	        String header = request.getHeader("Authorization");
+
+	        if (header != null && header.startsWith("Bearer ")) {
+	            String token = header.substring(7);
+
+	            if (jwtUtil.validateToken(token)) {
+	                String username = jwtUtil.extractUsername(token);
+
+	                UsernamePasswordAuthenticationToken authentication =
+	                        new UsernamePasswordAuthenticationToken(username, null, null);
+	                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+	                SecurityContextHolder.getContext().setAuthentication(authentication);
+	            }
+	        }
+
+	        filterChain.doFilter(request, response);
+	    }
+	
+	
+	/*@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 		log.debug("doFilterInternal");
 		String header = request.getHeader(SecurityUtil.HEADER_STRING);
@@ -59,6 +88,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		}  
 		if (!GenericUtil.isEmptyWithTrim(username) && GenericUtil.isNull(SecurityContextHolder.getContext().getAuthentication())) {
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			
 			if (jwtTokenUtil.validateToken(authToken, userDetails)) {
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken( userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -66,6 +96,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			}
 		}
 		chain.doFilter(request, response);
-	}
-
+	}*/
+	
 }
