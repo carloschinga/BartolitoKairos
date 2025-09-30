@@ -2,7 +2,6 @@ package com.ejemplo.jwtlogin.app.core.service.impl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import com.ejemplo.jwtlogin.app.core.service.KairosPreciosService;
 import com.ejemplo.jwtlogin.core.service.ServiceBase;
 import com.ejemplo.jwtlogin.dto.DateUtil;
 import com.ejemplo.jwtlogin.dto.model.precio.PrecioFileRequest;
-import com.ejemplo.jwtlogin.dto.model.presentacion.PresentacionFileRequest;
 
 @Service
 public class KairosPreciosServiceImpl extends ServiceBase implements KairosPreciosService {
@@ -36,11 +34,20 @@ public class KairosPreciosServiceImpl extends ServiceBase implements KairosPreci
 				String precioPublico = line.substring(25, 40).trim();
 				String fechaVigencia = line.substring(40, 48).trim();
 
+				Double precioPu = 0.0;
+
+				if (precioPublico.equals("0,00")) {
+					Double precioFa = parsePrecio(precioFabrica);
+					precioPu = precioFa * 1.33;
+				} else {
+					precioPu = parsePrecio(precioPublico);
+				}
+
 				PrecioFileRequest request = new PrecioFileRequest();
 				request.setProductosId(productoId);
 				request.setPresentacionesId(presentacionId);
 				request.setPrecioFabrica(parsePrecio(precioFabrica));
-				request.setPrecioPublico(parsePrecio(precioPublico));
+				request.setPrecioPublico(precioPu);
 				request.setFechaVigencia(DateUtil.toLocalDateKairos(fechaVigencia));
 
 				kairosPreciosRepository.saveOrUpdate(request);
@@ -50,16 +57,16 @@ public class KairosPreciosServiceImpl extends ServiceBase implements KairosPreci
 		}
 
 	}
-	
+
 	private Double parsePrecio(String valor) {
-	    if (valor == null || valor.trim().isEmpty()) {
-	        return 0.0;
-	    }
-	    // 1. Quitar espacios
-	    String limpio = valor.replaceAll("\\s+", "").trim();
-	    // 2. Cambiar coma por punto
-	    limpio = limpio.replace(",", ".");
-	    // 3. Parsear a double
-	    return Double.parseDouble(limpio);
+		if (valor == null || valor.trim().isEmpty()) {
+			return 0.0;
+		}
+		// 1. Quitar espacios
+		String limpio = valor.replaceAll("\\s+", "").trim();
+		// 2. Cambiar coma por punto
+		limpio = limpio.replace(",", ".");
+		// 3. Parsear a double
+		return Double.parseDouble(limpio);
 	}
 }

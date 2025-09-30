@@ -19,7 +19,7 @@ public class KairosLaboratoriosFacadeImpl extends FacadeBase implements KairosLa
 	@Override
 	public BaseOperacionResponse saveOrUpdateFile(MultipartFile file) {
 		kairosLaboratoriosService.saveOrUpdateFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Laboratorios guardados exitosamente.");
 	}
 
 }
