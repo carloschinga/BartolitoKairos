@@ -19,7 +19,7 @@ public class KairosPreciosFacadeImpl extends FacadeBase implements KairosPrecios
 	@Override
 	public BaseOperacionResponse saveOrUpdateFile(MultipartFile file) {
 		kairosPreciosService.saveOrUpdateFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Guardado precios exitosamente.");
 	} 
 	
 }

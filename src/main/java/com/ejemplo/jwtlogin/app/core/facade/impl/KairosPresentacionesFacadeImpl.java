@@ -19,7 +19,7 @@ public class KairosPresentacionesFacadeImpl extends FacadeBase implements Kairos
 	@Override
 	public BaseOperacionResponse saveOrUpdateFile(MultipartFile file) {
 		kairosPresentacionesService.saveOrUpdateFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Guardado presentaciones exitosamente.");
 	} 
 	
 }
