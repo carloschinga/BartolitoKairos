@@ -26,7 +26,7 @@ public class KairosProductosFacadeImpl extends FacadeBase implements KairosProdu
 	@Override
 	public BaseOperacionResponse saveOrUpdateFile(MultipartFile file) {
 		kairosProductosService.saveOrUpdateFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Guardados productos exitosamente.");
 	}
 
 	@Override
