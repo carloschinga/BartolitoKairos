@@ -30,7 +30,7 @@ public class KairosPreciosServiceImpl extends ServiceBase implements KairosPreci
 				// Extraer datos del TXT
 				String productoId = line.substring(0, 7).trim();
 				String presentacionId = line.substring(7, 10).trim();
-				String precioFabrica = line.substring(9, 24).trim();
+				String precioFabrica = line.substring(10, 25).trim();
 				String precioPublico = line.substring(25, 40).trim();
 				String fechaVigencia = line.substring(40, 48).trim();
 

@@ -19,13 +19,13 @@ public class KairosAccionTerapeuticasFacadeImpl extends FacadeBase implements Ka
 	@Override
 	public BaseOperacionResponse saveOrUpdateFile(MultipartFile file) {
 		kairosAccionTerapeuticasService.saveOrUpdateFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Guardado Acciones Terapeuticas exitosamente.");
 	}
 
 	@Override
 	public BaseOperacionResponse saveOrUpdateAccionProductoFile(MultipartFile file) {
 		kairosAccionTerapeuticasService.saveOrUpdateAccionProductoFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Guardado Acciones Terapeuticas del producto exitosamente.");
 	}
 
 }

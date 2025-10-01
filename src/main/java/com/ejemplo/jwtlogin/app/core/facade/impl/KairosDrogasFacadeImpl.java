@@ -19,13 +19,13 @@ public class KairosDrogasFacadeImpl extends FacadeBase implements KairosDrogasFa
 	@Override
 	public BaseOperacionResponse saveOrUpdateFile(MultipartFile file) {
 		drogaService.saveOrUpdateFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Guardado drogas exitosamente.");
 	}
 
 	@Override
 	public BaseOperacionResponse saveOrUpdateDrogaProductoFile(MultipartFile file) {
 		drogaService.saveOrUpdateDrogaProductoFile(file);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "guardado");
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Guardado drogas de productos exitosamente.");
 	}
 
 }
