@@ -9,17 +9,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductoResponse implements Serializable {
+public class ProductoSanitasResponse implements Serializable {
 	/**
 	* 
 	*/
-	private static final long serialVersionUID = -981522463752919669L;
-
-	private String productosId;
+	private static final long serialVersionUID = 1733282434011655860L;
+	
+	private String codpro;
 	private String producto;
+	private Integer stkfra;
 	private String laboratorio;
-	private Double precioFabrica;
-	private Double precioPublico;
-	private String fechaVigencia;
-
+	private String dci;
+	private Double precio;
 }

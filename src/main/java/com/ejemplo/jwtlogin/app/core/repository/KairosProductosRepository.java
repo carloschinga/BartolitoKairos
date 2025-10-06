@@ -14,7 +14,7 @@ public class KairosProductosRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(ProductoFileRequest t) {
-		String sql = "EXEC sp_bart_kairos_saveOrUpdateFile_productos ?, ?,?,?, ?, ?, ?";
+		String sql = "EXEC sp_bart_catalogo_precio_kairos_saveOrUpdateFile_productos ?, ?,?,?, ?, ?, ?";
 		try {
 			return jdbcTemplate.queryForObject(
 					sql, new Object[] { t.getProductosId(), t.getLaboratoriosId(), t.getDescripcion(),
@@ -27,7 +27,7 @@ public class KairosProductosRepository {
 	}
 
 	public String load() {
-	    String sql = "EXEC sp_bart_kairos_productos_listar";
+	    String sql = "EXEC sp_bart_catalogo_precio_kairos_productos_listar";
 	    List<String> result = jdbcTemplate.queryForList(sql, String.class);
 	    // Une todas las filas en un solo JSON
 	    List<String> cleaned = result.stream()

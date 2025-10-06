@@ -13,7 +13,7 @@ import com.ejemplo.jwtlogin.dto.model.BaseOperacionResponse;
 
 @CrossOrigin(origins = "*", maxAge = 360)
 @RestController
-@RequestMapping("/laboratorios")
+@RequestMapping("/kairos/laboratorios")
 public class KairosLaboratoriosRestController {
 
 	@Autowired
