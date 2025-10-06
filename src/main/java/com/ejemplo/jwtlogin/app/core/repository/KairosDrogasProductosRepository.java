@@ -12,7 +12,7 @@ public class KairosDrogasProductosRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(DrogaProductoFileRequest t) {
-		String sql = "EXEC sp_bart_kairos_saveOrUpdateFile_drogas_productos ?,?,?, ?, ?, ?";
+		String sql = "EXEC sp_bart_catalogo_precio_kairos_saveOrUpdateFile_drogas_productos ?,?,?, ?, ?, ?";
 		try {
 			return jdbcTemplate.queryForObject(sql,
 					new Object[] { t.getDrogasId(), t.getProductosId(), t.getEspecificacionPresentacion(),

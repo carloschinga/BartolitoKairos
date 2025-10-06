@@ -12,7 +12,7 @@ public class KairosLaboratoriosRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(LaboratorioFileRequest t) {
-		String sql = "EXEC sp_bart_kairos_saveOrUpdateFile_laboratorios ?, ?, ?";
+		String sql = "EXEC sp_bart_catalogo_precio_kairos_saveOrUpdateFile_laboratorios ?, ?, ?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new Object[] { t.getLaboratoriosId(), t.getDescripcion(), t.getEstado() },
 					String.class);
