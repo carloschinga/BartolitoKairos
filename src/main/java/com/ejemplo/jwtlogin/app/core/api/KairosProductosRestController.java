@@ -17,7 +17,7 @@ import com.ejemplo.jwtlogin.dto.model.producto.ProductoResponse;
 
 @CrossOrigin(origins = "*", maxAge = 360)
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/kairos/productos")
 public class KairosProductosRestController {
 
 	@Autowired

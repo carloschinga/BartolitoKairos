@@ -1,33 +1,36 @@
 package com.ejemplo.jwtlogin.app.core.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ejemplo.jwtlogin.app.core.facade.KairosDrogasFacade;
+import com.ejemplo.jwtlogin.app.core.facade.SanitasProductosFacade;
 import com.ejemplo.jwtlogin.dto.model.BaseOperacionResponse;
+import com.ejemplo.jwtlogin.dto.model.producto.ProductoSanitasResponse;
 
 @CrossOrigin(origins = "*", maxAge = 360)
 @RestController
-@RequestMapping("/kairos/drogas")
-public class KairosDrogasRestController {
-	
+@RequestMapping("/sanitas/productos")
+public class SanitasProductosRestController {
+
 	@Autowired
-	private KairosDrogasFacade drogaFacade; 
-	
+	private SanitasProductosFacade sanitasProductosFacade;
+
 	@PostMapping("/saveOrUpdateFile")
-	public BaseOperacionResponse saveOrUpdateFile(@RequestBody MultipartFile file ) {
-		return drogaFacade.saveOrUpdateFile(file);
+	public BaseOperacionResponse saveOrUpdateFile(@RequestBody MultipartFile file) {
+		return sanitasProductosFacade.saveOrUpdateFile(file);
 	}
-	
-	@PostMapping("/saveOrUpdateDrogaProductoFile")
-	public BaseOperacionResponse saveOrUpdateDrogaProductoFile(@RequestBody MultipartFile file ) {
-		return drogaFacade.saveOrUpdateDrogaProductoFile(file);
+
+	@GetMapping("/load")
+	public List<ProductoSanitasResponse> load() {
+		return sanitasProductosFacade.load();
 	}
-	
 
 }

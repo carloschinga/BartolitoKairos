@@ -2,7 +2,6 @@ package com.ejemplo.jwtlogin.app.core.facade.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,7 +37,6 @@ public class KairosProductosFacadeImpl extends FacadeBase implements KairosProdu
 		for(int i = 0; i < listDTO.length(); i++) {
 			JSONObject producto = listDTO.getJSONObject(i); 
 			ProductoResponse response = new ProductoResponse(); 
-			response.setBartKairosProductosId(UUID.fromString(producto.getString("bart_kairos_productos_id")));
 			response.setProductosId(producto.getString("productos_id"));
 			response.setProducto(producto.getString("producto"));
 			response.setLaboratorio(producto.getString("laboratorio"));

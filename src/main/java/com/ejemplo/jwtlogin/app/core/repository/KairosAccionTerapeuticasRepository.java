@@ -13,7 +13,7 @@ public class KairosAccionTerapeuticasRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(AccionTerapeuticaFileRequest t) {
-		String sql = "EXEC sp_bart_kairos_saveOrUpdateFile_accion_terapeuticas ?, ?, ?";
+		String sql = "EXEC sp_bart_catalogo_precio_kairos_saveOrUpdateFile_accion_terapeuticas ?, ?, ?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new Object[] { t.getAccionTerapeuticasId(), t.getDescripcion(), t.getEstado() },
 					String.class);

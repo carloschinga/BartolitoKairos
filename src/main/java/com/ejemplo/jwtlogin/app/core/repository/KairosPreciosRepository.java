@@ -12,7 +12,7 @@ public class KairosPreciosRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(PrecioFileRequest t) {
-		String sql = "EXEC sp_bart_kairos_saveOrUpdateFile_precios ?,?, ?, ?, ?";
+		String sql = "EXEC sp_bart_catalogo_precio_kairos_saveOrUpdateFile_precios ?,?, ?, ?, ?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new Object[] { t.getProductosId(), t.getPresentacionesId(),
 					t.getPrecioFabrica(), t.getPrecioPublico(), t.getFechaVigencia() }, String.class);
