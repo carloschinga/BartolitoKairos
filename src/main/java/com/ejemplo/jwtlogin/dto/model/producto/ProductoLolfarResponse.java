@@ -19,5 +19,10 @@ public class ProductoLolfarResponse implements Serializable {
 	private String despro;
 	private String codlab;
 	private String deslab;
+	private String codtip;
+	private String destip;
+	private String codgen;
+	private String desgen;
+	private String estado;
 
 }

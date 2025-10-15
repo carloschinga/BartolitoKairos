@@ -54,6 +54,10 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 			response.setProductosId(producto.getString("productos_id"));
 			response.setKairosProducto(producto.getString("kairos_producto"));
 			response.setEstaequi(producto.getString("estaequi"));
+			response.setPresentacionesId(producto.getString("presentaciones_id"));
+
+			response.setKairosId(response.getProductosId() + "-" + response.getPresentacionesId());
+
 			collection.add(response);
 		}
 
@@ -74,6 +78,21 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 			response.setLaboratoriosId(producto.getString("laboratorios_id"));
 			response.setLaboratorio(producto.getString("laboratorio"));
 			response.setPresentacionesId(producto.getString("presentaciones_id"));
+
+			if (producto.has("genericos") && !producto.isNull("genericos")) {
+			    response.setGenericos(producto.getString("genericos").toUpperCase());
+			} else {
+			    response.setGenericos("-");
+			}
+
+			if (producto.getString("estado").equals("B")) {
+				response.setEstado("INACTIVO");
+			} else {
+				response.setEstado(producto.getString("estado"));
+			}
+
+			response.setKairosId(response.getProductosId() + "-" + response.getPresentacionesId());
+
 			collection.add(response);
 		}
 
@@ -93,6 +112,12 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 			response.setDespro(producto.getString("despro"));
 			response.setCodlab(producto.getString("codlab"));
 			response.setDeslab(producto.getString("deslab"));
+			response.setCodtip(producto.getString("codtip"));
+			response.setDestip(producto.getString("destip"));
+			response.setCodgen(producto.getString("codgen"));
+			response.setDesgen(producto.getString("desgen"));
+			response.setEstado(producto.getString("estado"));
+
 			collection.add(response);
 		}
 

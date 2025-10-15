@@ -30,26 +30,33 @@ public class KairosProductosFacadeImpl extends FacadeBase implements KairosProdu
 
 	@Override
 	public List<ProductoResponse> load() {
-		List<ProductoResponse> collection = new ArrayList<>(); 
+		List<ProductoResponse> collection = new ArrayList<>();
 
-		JSONArray listDTO = kairosProductosService.load(); 
-		
-		for(int i = 0; i < listDTO.length(); i++) {
-			JSONObject producto = listDTO.getJSONObject(i); 
-			ProductoResponse response = new ProductoResponse(); 
+		JSONArray listDTO = kairosProductosService.load();
+
+		for (int i = 0; i < listDTO.length(); i++) {
+			JSONObject producto = listDTO.getJSONObject(i);
+			ProductoResponse response = new ProductoResponse();
 			response.setProductosId(producto.getString("productos_id"));
+			
+			response.setKairosId(producto.getString("productos_id") + "-"+ producto.getString("presentaciones_id"));
+			
 			response.setProducto(producto.getString("producto"));
 			response.setLaboratorio(producto.getString("laboratorio"));
-			response.setPrecioFabrica(producto.getDouble("precio_fabrica"));
-			response.setPrecioPublico(producto.getDouble("precio_publico"));
-			response.setFechaVigencia(producto.getString("fecha_vigencia"));
-			collection.add(response); 
+
+			Double precioFabrica = producto.isNull("precio_fabrica") ? 0.0 : producto.getDouble("precio_fabrica");
+			Double precioPublico = producto.isNull("precio_publico") ? 0.0 : producto.getDouble("precio_publico");
+
+			response.setPrecioFabrica(precioFabrica);
+			response.setPrecioPublico(precioPublico);
+
+			response.setFechaVigencia(producto.isNull("fecha_vigencia") ? "" : producto.getString("fecha_vigencia"));
+
+			collection.add(response);
 		}
-		
-		return collection; 
-		
-	} 
-	
-	
-	
+
+		return collection;
+
+	}
+
 }
