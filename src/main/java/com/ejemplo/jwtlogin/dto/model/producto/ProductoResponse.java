@@ -15,6 +15,7 @@ public class ProductoResponse implements Serializable {
 	*/
 	private static final long serialVersionUID = -981522463752919669L;
 
+	private String kairosId; 
 	private String productosId;
 	private String producto;
 	private String laboratorio;
