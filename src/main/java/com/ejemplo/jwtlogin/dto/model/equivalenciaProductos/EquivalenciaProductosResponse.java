@@ -22,6 +22,8 @@ public class EquivalenciaProductosResponse implements Serializable {
 	private String codlab;
 	private String deslab;
 	private String productosId;
+	private String kairosId;
 	private String kairosProducto;
 	private String estaequi;
+	private String presentacionesId;
 }

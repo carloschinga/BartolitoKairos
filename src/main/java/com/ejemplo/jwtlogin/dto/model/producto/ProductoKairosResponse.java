@@ -15,10 +15,13 @@ public class ProductoKairosResponse implements Serializable {
 	*/
 	private static final long serialVersionUID = -3067125396916294452L;
 
+	private String kairosId; 
 	private String productosId;
 	private String descripcion;
 	private String laboratoriosId;
 	private String laboratorio;
 	private String presentacionesId;
+	private String genericos;
+	private String estado;
 
 }
