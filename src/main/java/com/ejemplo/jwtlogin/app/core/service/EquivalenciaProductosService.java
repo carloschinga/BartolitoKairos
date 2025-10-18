@@ -12,6 +12,8 @@ public interface EquivalenciaProductosService {
 
 	void delete(UUID equivalenciaProductosId);
 
+    void deleteproducto(String codigo);
+
 	JSONArray load();
 
 	JSONArray loadKairos();

@@ -38,6 +38,11 @@ public class EquivalenciaProductosRestController {
 		return equivalenciaProductosFacade.delete(equivalenciaProductosId);
 	}
 
+    @DeleteMapping("/deleteproducto/{codpro}")
+    public BaseOperacionResponse delete(@PathVariable String codpro) {
+        return equivalenciaProductosFacade.deleteproducto(codpro);
+    }
+
 	@GetMapping("/load")
 	public List<EquivalenciaProductosResponse> load() {
 		return equivalenciaProductosFacade.load();

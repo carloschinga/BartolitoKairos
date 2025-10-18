@@ -15,6 +15,8 @@ public interface EquivalenciaProductosFacade {
 
 	BaseOperacionResponse delete(UUID equivalenciaProductosId);
 
+    BaseOperacionResponse  deleteproducto(String codpro);
+
 	List<EquivalenciaProductosResponse> load();
 
 	List<ProductoKairosResponse> loadKairos();

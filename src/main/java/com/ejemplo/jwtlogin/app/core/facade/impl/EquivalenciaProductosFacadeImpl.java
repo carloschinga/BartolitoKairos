@@ -31,6 +31,12 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 		return new BaseOperacionResponse(Constantes.SUCCESS, "Equivalencia guardada exitosamente.");
 	}
 
+    @Override
+    public BaseOperacionResponse deleteproducto(String codpro) {
+        equivalenciaProductosService.deleteproducto(codpro);
+        return new BaseOperacionResponse(Constantes.SUCCESS, "Producto eliminado de equivalencia " + codpro+" equivalencia eliminada exitosamente.");
+    }
+
 	@Override
 	public BaseOperacionResponse delete(UUID equivalenciaProductosId) {
 		equivalenciaProductosService.delete(equivalenciaProductosId);
@@ -86,10 +92,13 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 			}
 
 			if (producto.getString("estado").equals("B")) {
-				response.setEstado("INACTIVO");
+				//response.setEstado("INACTIVO");
+                response.setEstado("D");
 			} else {
-				response.setEstado(producto.getString("estado"));
+                response.setEstado("A");
+				//response.setEstado(producto.getString("estado"));
 			}
+            response.setBart_kairos_productos_id(producto.getString("bart_kairos_productos_id"));
 
 			response.setKairosId(response.getProductosId() + "-" + response.getPresentacionesId());
 

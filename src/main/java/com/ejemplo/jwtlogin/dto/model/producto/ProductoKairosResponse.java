@@ -23,5 +23,6 @@ public class ProductoKairosResponse implements Serializable {
 	private String presentacionesId;
 	private String genericos;
 	private String estado;
+    private String bart_kairos_productos_id;
 
 }

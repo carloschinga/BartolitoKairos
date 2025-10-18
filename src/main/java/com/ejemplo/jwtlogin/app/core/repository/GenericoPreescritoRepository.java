@@ -2,6 +2,7 @@ package com.ejemplo.jwtlogin.app.core.repository;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +22,7 @@ public class GenericoPreescritoRepository {
 		List<String> result = jdbcTemplate.queryForList(sql, new Object[] { t.getDesde(), t.getHasta() }, String.class);
 		// Une todas las filas en un solo JSON
 		List<String> cleaned = result.stream()
-				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).toList();
+				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).collect(Collectors.toList());
 
 		return "{\"genericos\":[" + String.join(",", cleaned) + "]}";
 	}
@@ -33,7 +34,7 @@ public class GenericoPreescritoRepository {
 
 		// Filtra nulls y limpia los corchetes
 		List<String> cleaned = result.stream().filter(Objects::nonNull)
-				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).toList();
+				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).collect(Collectors.toList());
 
 		return "{\"producto_agrupados\":[" + String.join(",", cleaned) + "]}";
 	}
@@ -43,7 +44,7 @@ public class GenericoPreescritoRepository {
 		List<String> result = jdbcTemplate.queryForList(sql, String.class);
 		// Une todas las filas en un solo JSON
 		List<String> cleaned = result.stream()
-				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).toList();
+				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).collect(Collectors.toList());
 
 		return "{\"combo_medico\":[" + String.join(",", cleaned) + "]}";
 	}

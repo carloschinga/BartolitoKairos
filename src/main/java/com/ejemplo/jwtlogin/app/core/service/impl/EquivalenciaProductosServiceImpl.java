@@ -28,6 +28,11 @@ public class EquivalenciaProductosServiceImpl extends ServiceBase implements Equ
 		equivalenciaProductosRepository.delete(equivalenciaProductosId);
 	}
 
+    @Override
+    public void deleteproducto(String codigo) {
+        equivalenciaProductosRepository.deleteproducto(codigo);
+    }
+
 	@Override
 	public JSONArray load() {
 		String response = equivalenciaProductosRepository.load();

@@ -1,6 +1,7 @@
 package com.ejemplo.jwtlogin.app.core.repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,7 +31,7 @@ public class SanitasProductosRepository {
 		List<String> result = jdbcTemplate.queryForList(sql, String.class);
 		// Une todas las filas en un solo JSON
 		List<String> cleaned = result.stream()
-				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).toList();
+				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).collect(Collectors.toList());
 
 		return "{\"productos\":[" + String.join(",", cleaned) + "]}";
 	}
