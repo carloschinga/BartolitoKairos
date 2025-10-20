@@ -1,6 +1,7 @@
 package com.ejemplo.jwtlogin.app.core.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +10,7 @@ import com.ejemplo.jwtlogin.dto.model.presentacion.PresentacionFileRequest;
 @Repository
 public class KairosPresentacionesRepository {
 	@Autowired
+	@Qualifier("lolfarJdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(PresentacionFileRequest t) {

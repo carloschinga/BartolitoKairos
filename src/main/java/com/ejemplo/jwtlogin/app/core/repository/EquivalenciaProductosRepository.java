@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProducto
 public class EquivalenciaProductosRepository {
 
 	@Autowired
+	@Qualifier("lolfarJdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
 
 	public String save(EquivalenciaProductosRequest t) {
@@ -45,7 +47,7 @@ public class EquivalenciaProductosRepository {
 
 		return "{\"productos_equivalencia\":[" + String.join(",", cleaned) + "]}";
 	}
-	
+
 	public String loadKairos() {
 		String sql = "EXEC sp_bart_catalogo_precio_equivalencia_listar_productos_kairos";
 		List<String> result = jdbcTemplate.queryForList(sql, String.class);
@@ -55,7 +57,7 @@ public class EquivalenciaProductosRepository {
 
 		return "{\"productos\":[" + String.join(",", cleaned) + "]}";
 	}
-	
+
 	public String loadLolfar() {
 		String sql = "EXEC sp_bart_catalogo_precio_equivalencia_listar_productos_lolfar";
 		List<String> result = jdbcTemplate.queryForList(sql, String.class);

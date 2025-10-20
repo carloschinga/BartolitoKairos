@@ -72,7 +72,7 @@ public class GenericoPreescritoFacadeImpl extends FacadeBase implements Generico
 		            producto.setLaboId(fila.optString("LaboId", ""));
 		            producto.setLaboDesc(fila.optString("LaboDesc", ""));
 		            producto.setCantidad(fila.optInt("Cantidad", 0));
-		            producto.setFechaRegistro(fila.optString("FechaRegistro", ""));
+		            producto.setFechaAtencion(fila.optString("FechaAtencion", ""));
 		            producto.setDiades(fila.optString("Diades", ""));
 		            producto.setServicio(fila.optString("Servicio", ""));
 		            producto.setMedico(fila.optString("Medico", ""));

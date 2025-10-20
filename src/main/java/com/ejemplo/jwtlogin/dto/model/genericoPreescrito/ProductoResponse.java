@@ -25,6 +25,6 @@ public class ProductoResponse implements Serializable {
 	private String servicio;
 	private String diades;
 	private Integer cantidad;
-	private String fechaRegistro;
+	private String fechaAtencion;
 
 }

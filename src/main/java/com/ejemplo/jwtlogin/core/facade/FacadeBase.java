@@ -22,20 +22,6 @@ public class FacadeBase {
 	@Autowired
 	protected UserSesion userSesion;
 	
-	/*
-	@Value("${message.global.update.password}")
-	protected String messageUpdatePassword;
-	@Value("${message.global.reset.password}")
-	protected String messageResetPassword;
-	
-	@Value("${message.global.save}")
-	protected String messageSave;
-	@Value("${message.global.update}")
-	protected String messageUpdate;
-	@Value("${message.global.delete}")
-	protected String messageDelete;*/
-
-	
 	protected void launchException(Exception e) {
 		log.error(e.getMessage());
 		if (e instanceof EntityNotFoundException) {
