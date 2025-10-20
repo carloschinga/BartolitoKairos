@@ -142,13 +142,22 @@ public class GenericoPreescritoFacadeImpl extends FacadeBase implements Generico
 
         for (int i = 0; i < listDTO.length(); i++) {
             JSONObject diade = listDTO.getJSONObject(i);
-            DiadesResponse response = new DiadesResponse();
 
-            response.setDiades(diade.optString("diades", null));
-            response.setServicio(diade.optString("Servicio", null));
-            response.setMedico(diade.optString("Medico", null));
+            String nombreDiades = diade.optString("diades", null);
+            String servicio = diade.optString("Servicio", null);
+            String medico = diade.optString("Medico", null);
 
-            diades.add(response);
+            nombreDiades = (nombreDiades != null) ? nombreDiades.trim() : null;
+            servicio = (servicio != null) ? servicio.trim() : null;
+            medico = (medico != null) ? medico.trim() : null;
+
+            if (nombreDiades != null && !nombreDiades.isEmpty()) {
+                DiadesResponse response = new DiadesResponse();
+                response.setDiades(nombreDiades);
+                response.setServicio(servicio);
+                response.setMedico(medico);
+                diades.add(response);
+            }
         }
 
         combo.setDiades(diades);
