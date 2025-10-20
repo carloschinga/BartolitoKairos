@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +14,12 @@ import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProducto
 @Repository
 public class EquivalenciaProductosRepository {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	/*@Autowired
+	private JdbcTemplate jdbcTemplate;*/
+    @Autowired
+    @Qualifier("lolfarJdbcTemplate")
+    private JdbcTemplate jdbcTemplate;
+
 
 	public String save(EquivalenciaProductosRequest t) {
 		String sql = "EXEC sp_bart_catalogo_precio_equivalencia_save ?,?,?";

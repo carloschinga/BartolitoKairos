@@ -27,131 +27,133 @@ import com.ejemplo.jwtlogin.dto.model.genericoPreescrito.ServicioResponse;
 @Component
 public class GenericoPreescritoFacadeImpl extends FacadeBase implements GenericoPreescritoFacade {
 
-	@Autowired
-	private GenericoPreescritoService genericoPreescritoService;
+    @Autowired
+    private GenericoPreescritoService genericoPreescritoService;
 
-	@Override
-	public List<GenericoPreescritoResponse> load(GenericoPreescritoRequest t) {
+    @Override
+    public List<GenericoPreescritoResponse> load(GenericoPreescritoRequest t) {
 
-		   List<GenericoPreescritoResponse> collection = new ArrayList<>();
-		    JSONArray listDTO = genericoPreescritoService.load(t); // trae filas de productos
+        List<GenericoPreescritoResponse> collection = new ArrayList<>();
+        JSONArray listDTO = genericoPreescritoService.load(t); // trae filas de productos
 
-		    Map<String, GenericoPreescritoResponse> mapaGenericos = new LinkedHashMap<>();
+        Map<String, GenericoPreescritoResponse> mapaGenericos = new LinkedHashMap<>();
 
-		    for (int i = 0; i < listDTO.length(); i++) {
-		        JSONObject fila = listDTO.getJSONObject(i);
-		        String geneId = fila.getString("GeneId");
-		        String prodId = fila.getString("ProdId");
+        for (int i = 0; i < listDTO.length(); i++) {
+            JSONObject fila = listDTO.getJSONObject(i);
+            String geneId = fila.getString("GeneId");
+            String prodId = fila.getString("ProdId");
 
-		        // Obtiene o crea el genérico
-		        GenericoPreescritoResponse generico = mapaGenericos.getOrDefault(geneId, new GenericoPreescritoResponse());
-		        generico.setGeneId(fila.getString("GeneId"));
-		        
-		        
-		        if (geneId.isEmpty()) {
-		            generico.setGeneDesc("NO ESPECIFICADO");
-		        } else {
-		            generico.setGeneDesc(fila.optString("GeneDesc", ""));
-		        }
+            // Obtiene o crea el genérico
+            GenericoPreescritoResponse generico = mapaGenericos.getOrDefault(geneId, new GenericoPreescritoResponse());
+            generico.setGeneId(fila.getString("GeneId"));
 
-		        generico.setGeneEst(fila.getString("GeneEst"));
-		        
-		        
-		        if (generico.getProductos() == null)
-		            generico.setProductos(new ArrayList<>());
 
-		        // Verifica si el producto ya está agregado
-		        boolean existe = generico.getProductos().stream()
-		                          .anyMatch(p -> p.getProdId().equals(prodId));
-		        if (!existe) {
-		            ProductoResponse producto = new ProductoResponse();
-		            producto.setProdId(fila.optString("ProdId", ""));
-		            producto.setProducto(fila.optString("Producto", ""));
-		            producto.setCodproLolfar(fila.optString("CodproLolfar", ""));
-		            producto.setProdEst(fila.optString("ProdEst", ""));
-		            producto.setLaboId(fila.optString("LaboId", ""));
-		            producto.setLaboDesc(fila.optString("LaboDesc", ""));
-		            producto.setCantidad(fila.optInt("Cantidad", 0));
-		            producto.setFechaRegistro(fila.optString("FechaRegistro", ""));
-		            producto.setDiades(fila.optString("Diades", ""));
-		            producto.setServicio(fila.optString("Servicio", ""));
-		            producto.setMedico(fila.optString("Medico", ""));
-		            generico.getProductos().add(producto);
-		        }
+            if (geneId.isEmpty()) {
+                generico.setGeneDesc("NO ESPECIFICADO");
+            } else {
+                generico.setGeneDesc(fila.optString("GeneDesc", ""));
+            }
 
-		        mapaGenericos.put(geneId, generico);
-		    }
+            generico.setGeneEst(fila.getString("GeneEst"));
 
-		    return new ArrayList<>(mapaGenericos.values());
-	}
 
-	@Override
-	public ComboMedicoResponse initComboMedico() {
-		ComboMedicoResponse combo = new ComboMedicoResponse();
+            if (generico.getProductos() == null)
+                generico.setProductos(new ArrayList<>());
 
-		List<MedicoResponse> medicos = new ArrayList<>();
+            // Verifica si el producto ya está agregado
+            boolean existe = generico.getProductos().stream()
+                    .anyMatch(p -> p.getProdId().equals(prodId));
+            if (!existe) {
+                ProductoResponse producto = new ProductoResponse();
+                producto.setProdId(fila.optString("ProdId", ""));
+                producto.setProducto(fila.optString("Producto", ""));
+                producto.setCodproLolfar(fila.optString("CodproLolfar", ""));
+                producto.setProdEst(fila.optString("ProdEst", ""));
+                producto.setLaboId(fila.optString("LaboId", ""));
+                producto.setLaboDesc(fila.optString("LaboDesc", ""));
+                producto.setCantidad(fila.optInt("Cantidad", 0));
+                producto.setFechaAtencion(fila.optString("FechaAtencion", ""));
+                producto.setDiades(fila.optString("Diades", ""));
+                producto.setServicio(fila.optString("Servicio", ""));
+                producto.setMedico(fila.optString("Medico", ""));
+                generico.getProductos().add(producto);
+            }
 
-		JSONArray listDTO = genericoPreescritoService.initComboMedico();
+            mapaGenericos.put(geneId, generico);
+        }
 
-		for (int i = 0; i < listDTO.length(); i++) {
-			JSONObject medico = listDTO.getJSONObject(i);
-			MedicoResponse response = new MedicoResponse();
+        return new ArrayList<>(mapaGenericos.values());
+    }
 
-			response.setDniMedico(medico.getString("DniMedico"));
-			response.setMedico(medico.getString("Medico"));
+    @Override
+    public ComboMedicoResponse initComboMedico() {
+        ComboMedicoResponse combo = new ComboMedicoResponse();
 
-			medicos.add(response);
-		}
+        List<MedicoResponse> medicos = new ArrayList<>();
 
-		combo.setMedicos(medicos);
+        JSONArray listDTO = genericoPreescritoService.initComboMedico();
 
-		return combo;
-	}
+        for (int i = 0; i < listDTO.length(); i++) {
+            JSONObject medico = listDTO.getJSONObject(i);
+            MedicoResponse response = new MedicoResponse();
 
-	@Override
-	public ComboServicioMedicoResponse initComboServicio(GenericoPreescritoComboRequest t) {
-		ComboServicioMedicoResponse combo = new ComboServicioMedicoResponse();
+            response.setDniMedico(medico.getString("DniMedico"));
+            response.setMedico(medico.getString("Medico"));
 
-		List<ServicioResponse> servicios = new ArrayList<>();
+            medicos.add(response);
+        }
 
-		JSONArray listDTO = genericoPreescritoService.initComboServicioMedico(t);
+        combo.setMedicos(medicos);
 
-		for (int i = 0; i < listDTO.length(); i++) {
-			JSONObject servicio = listDTO.getJSONObject(i);
-			ServicioResponse response = new ServicioResponse();
+        return combo;
+    }
 
-			response.setServicio(servicio.getString("servicio"));
+    @Override
+    public ComboServicioMedicoResponse initComboServicio(GenericoPreescritoComboRequest t) {
+        ComboServicioMedicoResponse combo = new ComboServicioMedicoResponse();
 
-			servicios.add(response);
-		}
+        List<ServicioResponse> servicios = new ArrayList<>();
 
-		combo.setServicios(servicios);
+        JSONArray listDTO = genericoPreescritoService.initComboServicioMedico(t);
 
-		return combo;
-	}
+        for (int i = 0; i < listDTO.length(); i++) {
+            JSONObject servicio = listDTO.getJSONObject(i);
+            String nombre = servicio.optString("servicio", null);
 
-	@Override
-	public ComboDiadesServicioMedicoResponse initComboDiades(GenericoPreescritoComboRequest t) {
-		ComboDiadesServicioMedicoResponse combo = new ComboDiadesServicioMedicoResponse();
+            if (nombre != null && !nombre.trim().isEmpty()) {
+                ServicioResponse response = new ServicioResponse();
+                response.setServicio(nombre);
+                servicios.add(response);
+            }
+        }
 
-		List<DiadesResponse> diades = new ArrayList<>();
+        combo.setServicios(servicios);
 
-		JSONArray listDTO = genericoPreescritoService.initComboDiadesServicioMedico(t);
+        return combo;
+    }
 
-		for (int i = 0; i < listDTO.length(); i++) {
-			JSONObject diade = listDTO.getJSONObject(i);
-			DiadesResponse response = new DiadesResponse();
+    @Override
+    public ComboDiadesServicioMedicoResponse initComboDiades(GenericoPreescritoComboRequest t) {
+        ComboDiadesServicioMedicoResponse combo = new ComboDiadesServicioMedicoResponse();
 
-			response.setDiades(diade.getString("diades"));
-			response.setServicio(diade.getString("Servicio"));
-			response.setMedico(diade.getString("Medico"));
+        List<DiadesResponse> diades = new ArrayList<>();
 
-			diades.add(response);
-		}
+        JSONArray listDTO = genericoPreescritoService.initComboDiadesServicioMedico(t);
 
-		combo.setDiades(diades);
+        for (int i = 0; i < listDTO.length(); i++) {
+            JSONObject diade = listDTO.getJSONObject(i);
+            DiadesResponse response = new DiadesResponse();
 
-		return combo;
-	}
+            response.setDiades(diade.optString("diades", null));
+            response.setServicio(diade.optString("Servicio", null));
+            response.setMedico(diade.optString("Medico", null));
+
+            diades.add(response);
+        }
+
+        combo.setDiades(diades);
+
+        return combo;
+    }
 
 }

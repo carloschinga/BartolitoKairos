@@ -1,6 +1,7 @@
 package com.ejemplo.jwtlogin.app.core.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -8,8 +9,11 @@ import com.ejemplo.jwtlogin.dto.model.droga.DrogaFileRequest;
 
 @Repository
 public class KairosDrogasRepository {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	/*@Autowired
+	private JdbcTemplate jdbcTemplate;*/
+    @Autowired
+    @Qualifier("lolfarJdbcTemplate")
+    private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(DrogaFileRequest t) {
 		String sql = "EXEC sp_bart_catalogo_precio_kairos_saveOrUpdateFile_drogas ?, ?, ?";

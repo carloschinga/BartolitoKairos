@@ -1,12 +1,14 @@
 package com.ejemplo.jwtlogin.app.security.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class AuthRepository {
     @Autowired
+    @Qualifier("lolfarJdbcTemplate")
     private JdbcTemplate jdbcTemplate;
 
     public String loginUsuario(String tipo, String username, String password) {

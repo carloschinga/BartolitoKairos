@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +12,11 @@ import com.ejemplo.jwtlogin.dto.model.producto.ProductoSanitasFileRequest;
 
 @Repository
 public class SanitasProductosRepository {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	/*@Autowired
+	private JdbcTemplate jdbcTemplate;*/
+    @Autowired
+    @Qualifier("lolfarJdbcTemplate")
+    private JdbcTemplate jdbcTemplate;
 
 	public String saveOrUpdate(ProductoSanitasFileRequest t) {
 		String sql = "EXEC sp_bart_catalogo_precio_sanitas_saveOrUpdateFile_productos ?,?,?,?,?,?";

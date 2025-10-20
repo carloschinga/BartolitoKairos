@@ -14,42 +14,42 @@ import com.ejemplo.jwtlogin.dto.model.genericoPreescrito.GenericoPreescritoReque
 @Service
 public class GenericoPreescritoServiceImpl extends ServiceBase implements GenericoPreescritoService {
 
-	@Autowired
-	private GenericoPreescritoRepository genericoPreescritoRepository;
+    @Autowired
+    private GenericoPreescritoRepository genericoPreescritoRepository;
 
-	@Override
-	public JSONArray load(GenericoPreescritoRequest t) {
-		String response = genericoPreescritoRepository.load(t);
-		JSONObject obj = new JSONObject(response);
-		return obj.getJSONArray("genericos");
-	}
+    @Override
+    public JSONArray load(GenericoPreescritoRequest t) {
+        String response = genericoPreescritoRepository.load(t);
+        JSONObject obj = new JSONObject(response);
+        return obj.getJSONArray("genericos");
+    }
 
-	@Override
-	public JSONArray initComboMedico() {
-		String response = genericoPreescritoRepository.initComboMedico();
-		JSONObject obj = new JSONObject(response);
-		return obj.getJSONArray("combo_medico");
-	}
+    @Override
+    public JSONArray initComboMedico() {
+        String response = genericoPreescritoRepository.initComboMedico();
+        JSONObject obj = new JSONObject(response);
+        return obj.getJSONArray("combo_medico");
+    }
 
-	@Override
-	public JSONArray initComboServicioMedico(GenericoPreescritoComboRequest t) {
-		String response = genericoPreescritoRepository.initComboServicioMedico(t);
-		JSONObject obj = new JSONObject(response);
-		return obj.getJSONArray("combo_servicio_medico");
-	}
+    @Override
+    public JSONArray initComboServicioMedico(GenericoPreescritoComboRequest t) {
+        String response = genericoPreescritoRepository.initComboServicioMedico(t);
+        JSONObject obj = new JSONObject(response);
+        return obj.getJSONArray("combo_servicio_medico");
+    }
 
-	@Override
-	public JSONArray initComboDiadesServicioMedico(GenericoPreescritoComboRequest t) {
-		String response = genericoPreescritoRepository.initComboDiadesServicioMedico(t);
-		JSONObject obj = new JSONObject(response);
-		return obj.getJSONArray("combo_diades");
-	}
+    @Override
+    public JSONArray initComboDiadesServicioMedico(GenericoPreescritoComboRequest t) {
+        String response = genericoPreescritoRepository.initComboDiadesServicioMedico(t);
+        JSONObject obj = new JSONObject(response);
+        return obj.getJSONArray("combo_diades");
+    }
 
-	@Override
-	public JSONArray loadProductos(GenericoPreescritoRequest t) {
-		String response = genericoPreescritoRepository.loadProductos(t);
-		JSONObject obj = new JSONObject(response);
-		return obj.getJSONArray("producto_agrupados");
-	}
+    @Override
+    public JSONArray loadProductos(GenericoPreescritoRequest t) {
+        String response = genericoPreescritoRepository.loadProductos(t);
+        JSONObject obj = new JSONObject(response);
+        return obj.getJSONArray("producto_agrupados");
+    }
 
 }
