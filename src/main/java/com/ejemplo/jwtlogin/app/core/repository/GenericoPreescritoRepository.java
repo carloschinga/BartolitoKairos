@@ -1,9 +1,11 @@
 package com.ejemplo.jwtlogin.app.core.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -43,42 +45,44 @@ public class GenericoPreescritoRepository {
         return "{\"producto_agrupados\":[" + String.join(",", cleaned) + "]}";
     }
 
-    public String initComboMedico() {
-        String sql = "EXEC sp_bart_generico_preescrito_combo_medico";
-        List<String> result = biJdbcTemplate.queryForList(sql, String.class);
-        // Une todas las filas en un solo JSON
-        List<String> cleaned = result.stream()
-                .map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).collect(Collectors.toList());
+    public String initComboMedico(GenericoPreescritoComboRequest t) {
+    	
+    	String jsonServicios = new JSONArray(t.getServicio() != null ? t.getServicio() : new ArrayList<>()).toString();
+    	String jsonDiades = new JSONArray(t.getDiades() != null ? t.getDiades() : new ArrayList<>()).toString();
+    	
+        String sql = "EXEC sp_bart_generico_preescrito_combo_medico ?,?";
+        String json = biJdbcTemplate.queryForObject(sql, new Object[] { jsonServicios, jsonDiades }, String.class);
 
-        return "{\"combo_medico\":[" + String.join(",", cleaned) + "]}";
+        if (json == null || json.isBlank()) json = "[]";
+        String cleaned = json.startsWith("[") && json.endsWith("]") ? json.substring(1, json.length() - 1) : json;
+        return "{\"combo_medico\":[" + cleaned + "]}";
+
     }
 
     public String initComboServicioMedico(GenericoPreescritoComboRequest t) {
-        String sql = "EXEC sp_bart_generico_preescrito_combo_servicio_medico ?";
-        String json = biJdbcTemplate.queryForObject(sql, new Object[] { t.getMedico() }, String.class);
+    	
+    	String jsonMedicos = new JSONArray(t.getMedico() != null ? t.getMedico() : new ArrayList<>()).toString();
+    	String jsonDiades = new JSONArray(t.getDiades() != null ? t.getDiades() : new ArrayList<>()).toString();
+    	
+        String sql = "EXEC sp_bart_generico_preescrito_combo_servicio_medico ?, ?";
+        String json = biJdbcTemplate.queryForObject(sql, new Object[] { jsonMedicos, jsonDiades }, String.class);
 
-        // En caso de que sea null (por ejemplo, sin resultados)
-        if (json == null || json.isBlank()) {
-            json = "[]";
-        }
-
-        // Limpia los corchetes si SQL devuelve [[...]]
+        if (json == null || json.isBlank()) json = "[]";
         String cleaned = json.startsWith("[") && json.endsWith("]") ? json.substring(1, json.length() - 1) : json;
-
         return "{\"combo_servicio_medico\":[" + cleaned + "]}";
     }
 
     public String initComboDiadesServicioMedico(GenericoPreescritoComboRequest t) {
+    	
+    	String jsonMedicos = new JSONArray(t.getMedico() != null ? t.getMedico() : new ArrayList<>()).toString();
+    	String jsonServicios = new JSONArray(t.getServicio() != null ? t.getServicio() : new ArrayList<>()).toString();
+    	
         String sql = "EXEC sp_bart_generico_preescrito_combo_diades_servicio ?,?";
-        String json = biJdbcTemplate.queryForObject(sql, new Object[] { t.getServicio(), t.getMedico() }, String.class);
+        String json = biJdbcTemplate.queryForObject(sql, new Object[] { jsonServicios, jsonMedicos }, String.class);
 
-        if (json == null || json.isBlank()) {
-            json = "[]";
-        }
-
+        if (json == null || json.isBlank()) json = "[]";
         String cleaned = json.startsWith("[") && json.endsWith("]") ? json.substring(1, json.length() - 1) : json;
-
-        return "{\"combo_diades\":[" + cleaned + "]}";
+        return "{\"combo_diades\":[" + cleaned + "]}";        
     }
 
 }

@@ -11,7 +11,7 @@ public interface GenericoPreescritoService {
 
 	JSONArray loadProductos(GenericoPreescritoRequest request);
 	
-	JSONArray initComboMedico();
+	JSONArray initComboMedico(GenericoPreescritoComboRequest request);
 
 	JSONArray initComboServicioMedico(GenericoPreescritoComboRequest request);
 	

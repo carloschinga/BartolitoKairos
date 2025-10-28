@@ -11,42 +11,45 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.ejemplo.jwtlogin.app.core.repository.SanitasProductosRepository;
-import com.ejemplo.jwtlogin.app.core.service.SanitasProductosService;
+import com.ejemplo.jwtlogin.app.core.repository.OtrosCatalogosRepository;
+import com.ejemplo.jwtlogin.app.core.service.OtrosCatalogosService;
 import com.ejemplo.jwtlogin.core.service.ServiceBase;
-import com.ejemplo.jwtlogin.dto.model.producto.ProductoSanitasFileRequest;
+import com.ejemplo.jwtlogin.dto.model.otrosCatalogos.TiposCatalogosRequest;
+import com.ejemplo.jwtlogin.dto.model.producto.ProductoOtrosCatalogosFileRequest;
+import com.ejemplo.jwtlogin.dto.model.producto.ProductoOtrosCatalogosRequest;
 
 @Service
-public class SanitasProductosServiceImpl extends ServiceBase implements SanitasProductosService {
+public class OtrosCatalogosServiceImpl extends ServiceBase implements OtrosCatalogosService {
 
 	@Autowired
-	private SanitasProductosRepository sanitasProductosRepository;
+	private OtrosCatalogosRepository otrosCatalogosRepository;
 
 	private final DataFormatter dataFormatter = new DataFormatter();
 
 	@Override
-	public void saveOrUpdate(MultipartFile file) {
+	public void saveOrUpdate(ProductoOtrosCatalogosRequest t) {
 		try {
-			Workbook workbook = new XSSFWorkbook(file.getInputStream());
+			Workbook workbook = new XSSFWorkbook(t.getFile().getInputStream());
 			Sheet sheet = workbook.getSheetAt(0);
 
 			// Suponiendo que la primera fila son encabezados
 			for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 				Row row = sheet.getRow(i);
-				if (row == null)
-					continue;
+				 if (isRowEmpty(row))
+				        continue;
 
-				ProductoSanitasFileRequest request = new ProductoSanitasFileRequest();
+				ProductoOtrosCatalogosFileRequest request = new ProductoOtrosCatalogosFileRequest();
 				request.setCodpro(getStringCell(row.getCell(0)));
 				request.setProd(getStringCell(row.getCell(1)));
 				request.setStk(getIntegerCell(row.getCell(2)));
 				request.setLab(getStringCell(row.getCell(3)));
 				request.setDci(getStringCell(row.getCell(4)));
-				request.setPrec(getDoubleCell(row.getCell(11)));
+				request.setPrec(getDoubleCell(row.getCell(5)));
 
-				sanitasProductosRepository.saveOrUpdate(request);
+				request.setCodtip(t.getCodtip());
+
+				otrosCatalogosRepository.saveOrUpdate(request);
 			}
 
 			workbook.close();
@@ -58,10 +61,10 @@ public class SanitasProductosServiceImpl extends ServiceBase implements SanitasP
 	}
 
 	@Override
-	public JSONArray load() {
-		String response = sanitasProductosRepository.load();
-	    JSONObject obj = new JSONObject(response);
-	    return obj.getJSONArray("productos");
+	public JSONArray load(TiposCatalogosRequest t) {
+		String response = otrosCatalogosRepository.load(t);
+		JSONObject obj = new JSONObject(response);
+		return obj.getJSONArray("productos");
 	}
 
 	private String getStringCell(Cell cell) {
@@ -95,6 +98,19 @@ public class SanitasProductosServiceImpl extends ServiceBase implements SanitasP
 			return 0;
 		}
 	}
+	
+	private boolean isRowEmpty(Row row) {
+	    if (row == null) return true;
+
+	    for (int c = 0; c < row.getLastCellNum(); c++) {
+	        Cell cell = row.getCell(c);
+	        if (cell != null && cell.getCellType() != CellType.BLANK) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
 
 	private Double getDoubleCell(Cell cell) {
 		if (cell == null)
@@ -106,15 +122,20 @@ public class SanitasProductosServiceImpl extends ServiceBase implements SanitasP
 		if (cellValue.isEmpty())
 			return 0.0;
 
-		cellValue = cellValue.replace("S/", "") 
-				.replace("$", "").replace(",", "") 
-				.replace(" ", ""); 
+		cellValue = cellValue.replace("S/", "").replace("$", "").replace(",", "").replace(" ", "");
 
 		try {
 			return Double.parseDouble(cellValue);
 		} catch (NumberFormatException e) {
 			return 0.0;
 		}
+	}
+
+	@Override
+	public JSONArray initComboCatalogos() {
+		String response = otrosCatalogosRepository.initComboCatalogos();
+		JSONObject obj = new JSONObject(response);
+		return obj.getJSONArray("catalogos");
 	}
 
 }

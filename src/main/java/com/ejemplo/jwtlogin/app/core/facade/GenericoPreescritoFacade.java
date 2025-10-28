@@ -13,7 +13,7 @@ public interface GenericoPreescritoFacade {
 
 	List<GenericoPreescritoResponse> load(GenericoPreescritoRequest request);
 
-	ComboMedicoResponse initComboMedico();
+	ComboMedicoResponse initComboMedico(GenericoPreescritoComboRequest t);
 
 	ComboServicioMedicoResponse initComboServicio(GenericoPreescritoComboRequest t);
 
