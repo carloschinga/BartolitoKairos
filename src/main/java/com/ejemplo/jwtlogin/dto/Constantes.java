@@ -20,6 +20,7 @@ public class Constantes {
 	public static final String EMPTY = "";
 	public static final String CSC = "CSC-PERU";
 	public static final String SUCCESS = "success";
+	public static final String ERROR = "error";
 	public static final String SCHEMA = "public";
 	public static final String CATALOG = "bartolito";
 	public static final Boolean SI = true;
