@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductoSanitasResponse implements Serializable {
+public class ProductoOtrosCatalogosResponse implements Serializable {
 	/**
 	* 
 	*/
@@ -21,4 +21,5 @@ public class ProductoSanitasResponse implements Serializable {
 	private String laboratorio;
 	private String dci;
 	private Double precio;
+	private Integer codtip; 
 }
