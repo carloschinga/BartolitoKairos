@@ -25,8 +25,8 @@ public class GenericoPreescritoServiceImpl extends ServiceBase implements Generi
     }
 
     @Override
-    public JSONArray initComboMedico() {
-        String response = genericoPreescritoRepository.initComboMedico();
+    public JSONArray initComboMedico(GenericoPreescritoComboRequest t) {
+        String response = genericoPreescritoRepository.initComboMedico(t);
         JSONObject obj = new JSONObject(response);
         return obj.getJSONArray("combo_medico");
     }
