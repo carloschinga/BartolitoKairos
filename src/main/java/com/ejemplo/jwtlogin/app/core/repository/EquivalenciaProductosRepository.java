@@ -14,8 +14,6 @@ import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProducto
 @Repository
 public class EquivalenciaProductosRepository {
 
-	/*@Autowired
-	private JdbcTemplate jdbcTemplate;*/
     @Autowired
     @Qualifier("lolfarJdbcTemplate")
     private JdbcTemplate jdbcTemplate;
@@ -81,5 +79,16 @@ public class EquivalenciaProductosRepository {
 
 		return "{\"productos\":[" + String.join(",", cleaned) + "]}";
 	}
+	
+	public String loadPrecios() {
+		String sql = "EXEC sp_bart_catalogo_precio_equivalencia_precios_listar";
+		List<String> result = jdbcTemplate.queryForList(sql, String.class);
+		// Une todas las filas en un solo JSON
+		List<String> cleaned = result.stream()
+				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).collect(Collectors.toList());
+
+		return "{\"productos\":[" + String.join(",", cleaned) + "]}";
+	}
+	
 
 }

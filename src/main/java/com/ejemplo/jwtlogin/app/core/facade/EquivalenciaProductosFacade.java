@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.ejemplo.jwtlogin.dto.model.BaseOperacionResponse;
 import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosRequest;
 import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosResponse;
+import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.ProductoPreciosResponse;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoKairosResponse;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoLolfarResponse;
 
@@ -22,4 +23,6 @@ public interface EquivalenciaProductosFacade {
 	List<ProductoKairosResponse> loadKairos();
 
 	List<ProductoLolfarResponse> loadLolfar();
+	
+	List<ProductoPreciosResponse> loadPrecios();
 }
