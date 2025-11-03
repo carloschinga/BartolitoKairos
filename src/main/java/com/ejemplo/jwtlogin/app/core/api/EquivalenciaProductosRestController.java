@@ -17,6 +17,7 @@ import com.ejemplo.jwtlogin.app.core.facade.EquivalenciaProductosFacade;
 import com.ejemplo.jwtlogin.dto.model.BaseOperacionResponse;
 import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosRequest;
 import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosResponse;
+import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.ProductoPreciosResponse;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoKairosResponse;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoLolfarResponse;
 
@@ -57,5 +58,10 @@ public class EquivalenciaProductosRestController {
 	public List<ProductoLolfarResponse> loadLolfar() {
 		return equivalenciaProductosFacade.loadLolfar();
 	}
-
+	
+	@GetMapping("/loadPrecios")
+	public List<ProductoPreciosResponse> loadPrecios(){
+		return equivalenciaProductosFacade.loadPrecios();
+	}
+	
 }

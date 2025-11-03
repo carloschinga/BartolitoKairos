@@ -16,6 +16,7 @@ import com.ejemplo.jwtlogin.dto.Constantes;
 import com.ejemplo.jwtlogin.dto.model.BaseOperacionResponse;
 import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosRequest;
 import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosResponse;
+import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.ProductoPreciosResponse;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoKairosResponse;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoLolfarResponse;
 
@@ -131,6 +132,30 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 		}
 
 		return collection;
+	}
+
+	@Override
+	public List<ProductoPreciosResponse> loadPrecios() {
+		List<ProductoPreciosResponse> collection = new ArrayList<>();
+		
+		JSONArray listDTO = equivalenciaProductosService.loadPrecios();
+
+		for (int i = 0; i < listDTO.length(); i++) {
+			JSONObject producto = listDTO.getJSONObject(i);
+			ProductoPreciosResponse response = new ProductoPreciosResponse();
+			response.setCodpro(producto.getString("codpro"));
+			response.setProducto(producto.getString("producto"));
+			response.setLaboratorio(producto.getString("laboratorio"));
+			response.setPvf(producto.optDouble("PVF"));
+			response.setPps(producto.optDouble("PPS"));
+			response.setDci(producto.getString("dci"));;
+			response.setCodtip(producto.getInt("codtip"));
+			response.setNombtip(producto.getString("nombtip"));
+
+			collection.add(response);
+		}
+		
+		return collection; 
 	}
 
 }
