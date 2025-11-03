@@ -19,4 +19,6 @@ public interface EquivalenciaProductosService {
 	JSONArray loadKairos();
 
 	JSONArray loadLolfar();
+	
+	JSONArray loadPrecios();
 }
