@@ -54,4 +54,11 @@ public class EquivalenciaProductosServiceImpl extends ServiceBase implements Equ
 		return obj.getJSONArray("productos");
 	}
 
+	@Override
+	public JSONArray loadPrecios() {
+		String response = equivalenciaProductosRepository.loadPrecios();
+		JSONObject obj = new JSONObject(response);
+		return obj.getJSONArray("productos");
+	}
+
 }
