@@ -33,6 +33,7 @@ public class EquivalenciaProductosRestController {
 		return equivalenciaProductosFacade.save(request);
 	}
 
+
 	@DeleteMapping("/delete/{equivalenciaProductosId}")
 	public BaseOperacionResponse delete(@PathVariable UUID equivalenciaProductosId) {
 		return equivalenciaProductosFacade.delete(equivalenciaProductosId);
