@@ -1,13 +1,11 @@
 com\ejemplo\jwtlogin\core\exception\CoreExceptionHandler.class
 com\ejemplo\jwtlogin\app\core\facade\impl\GenericoPreescritoFacadeImpl.class
 com\ejemplo\jwtlogin\dto\model\producto\ProductoFiltroRequest.class
-com\ejemplo\jwtlogin\dto\model\producto\ProductoSanitasResponse.class
 com\ejemplo\jwtlogin\app\core\repository\RecetaRepository.class
 com\ejemplo\jwtlogin\core\exception\NotFoundException.class
 com\ejemplo\jwtlogin\core\audit\UserSesion.class
 com\ejemplo\jwtlogin\core\exception\IntegrationException.class
 com\ejemplo\jwtlogin\dto\model\genericoPreescrito\ComboMedicoResponse.class
-com\ejemplo\jwtlogin\app\core\facade\SanitasProductosFacade.class
 com\ejemplo\jwtlogin\app\auth\api\MenuRestController.class
 com\ejemplo\jwtlogin\app\auth\service\impl\AuthServiceImpl.class
 com\ejemplo\jwtlogin\dto\Constantes$EstadoUsuario.class
@@ -15,7 +13,6 @@ com\ejemplo\jwtlogin\dto\model\genericoPreescrito\DiadesResponse.class
 com\ejemplo\jwtlogin\app\auth\facade\impl\MenuFacadeImpl.class
 com\ejemplo\jwtlogin\core\filter\JwtUtil.class
 com\ejemplo\jwtlogin\app\core\facade\impl\KairosPreciosFacadeImpl.class
-com\ejemplo\jwtlogin\app\core\service\SanitasProductosService.class
 com\ejemplo\jwtlogin\app\core\facade\impl\KairosProductosFacadeImpl.class
 com\ejemplo\jwtlogin\dto\model\genericoPreescrito\ServicioResponse.class
 com\ejemplo\jwtlogin\dto\GenericUtil.class
@@ -43,7 +40,6 @@ com\ejemplo\jwtlogin\app\core\repository\KairosPreciosRepository.class
 com\ejemplo\jwtlogin\dto\model\droga\DrogaResponse.class
 com\ejemplo\jwtlogin\app\core\facade\KairosAccionTerapeuticasFacade.class
 com\ejemplo\jwtlogin\app\core\api\KairosProductosRestController.class
-com\ejemplo\jwtlogin\app\core\api\SanitasProductosRestController.class
 com\ejemplo\jwtlogin\core\filter\JwtAuthenticationFilter.class
 com\ejemplo\jwtlogin\dto\model\auth\AutorizacionResponse.class
 com\ejemplo\jwtlogin\core\exception\BadRequestException.class
@@ -56,11 +52,9 @@ com\ejemplo\jwtlogin\dto\Constantes$ContentType.class
 com\ejemplo\jwtlogin\dto\model\genericoPreescrito\GenericoPreescritoRequest.class
 com\ejemplo\jwtlogin\app\core\service\EquivalenciaProductosService.class
 com\ejemplo\jwtlogin\app\core\repository\KairosAccionTerapeuticasRepository.class
-com\ejemplo\jwtlogin\dto\model\producto\ProductoSanitasFileRequest.class
 com\ejemplo\jwtlogin\app\core\facade\impl\KairosDrogasFacadeImpl.class
 com\ejemplo\jwtlogin\dto\model\droga\DrogaProductoFileRequest.class
 com\ejemplo\jwtlogin\app\auth\facade\MenuFacade.class
-com\ejemplo\jwtlogin\app\core\repository\SanitasProductosRepository.class
 com\ejemplo\jwtlogin\app\core\api\KairosDrogasRestController.class
 com\ejemplo\jwtlogin\app\auth\service\MenuService.class
 com\ejemplo\jwtlogin\config\SecurityUtil$Rol.class
@@ -113,10 +107,8 @@ com\ejemplo\jwtlogin\core\filter\JwtAuthenticationEntryPoint.class
 com\ejemplo\jwtlogin\dto\Constantes$ConfiguracionSistema.class
 com\ejemplo\jwtlogin\app\core\service\impl\KairosLaboratoriosServiceImpl.class
 com\ejemplo\jwtlogin\dto\Constantes.class
-com\ejemplo\jwtlogin\app\core\service\impl\SanitasProductosServiceImpl.class
 com\ejemplo\jwtlogin\core\exception\NoContentException.class
 com\ejemplo\jwtlogin\dto\Constantes$PathUrl.class
-com\ejemplo\jwtlogin\app\core\facade\impl\SanitasProductosFacadeImpl.class
 com\ejemplo\jwtlogin\app\security\repository\AuthRepository.class
 com\ejemplo\jwtlogin\app\security\repository\MenuRepository.class
 com\ejemplo\jwtlogin\dto\model\presentacion\PresentacionFileRequest.class
