@@ -16,7 +16,7 @@ public class EquivalenciaProductosResponse implements Serializable {
 	*/
 	private static final long serialVersionUID = 3341714187977058087L;
 
-	private UUID equivalenciaProductosId;
+	/*private UUID equivalenciaProductosId;
 	private String codpro;
 	private String despro;
 	private String codlab;
@@ -25,5 +25,18 @@ public class EquivalenciaProductosResponse implements Serializable {
 	private String kairosId;
 	private String kairosProducto;
 	private String estaequi;
-	private String presentacionesId;
+	private String presentacionesId;*/
+
+    private UUID equivalenciaProductosId;
+    private String codpro;
+    private String despro;
+    private String deslab;
+    private String desgen;
+    private String productosId;
+    private String presentacionesId;
+    private String kairosProducto;
+    private String kairosLaboratorio;
+    private String kairosGenerico;
+    private String estaequi;
+
 }
