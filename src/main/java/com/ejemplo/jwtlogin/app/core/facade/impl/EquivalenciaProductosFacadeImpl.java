@@ -154,12 +154,12 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 			ProductoPreciosResponse response = new ProductoPreciosResponse();
 			response.setCodpro(producto.getString("codpro"));
 			response.setProducto(producto.getString("producto"));
-			response.setLaboratorio(producto.getString("laboratorio"));
-			response.setPvf(producto.optDouble("PVF"));
-			response.setPps(producto.optDouble("PPS"));
-			response.setDci(producto.getString("dci"));;
-			response.setCodtip(producto.getInt("codtip"));
-			response.setNombtip(producto.getString("nombtip"));
+			response.setLaboratorio(producto.optString("laboratorio"));
+			response.setDci(producto.getString("dci"));
+			response.setPrecioKairos(producto.optDouble("precio_kairos"));
+			response.setPrecioSanitas(producto.optDouble("precio_sanitas"));
+			response.setPrecioOtro1(producto.optDouble("precio_otro1"));
+			response.setPrecioOtro2(producto.optDouble("precio_otro2"));
 
 			collection.add(response);
 		}
