@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import com.ejemplo.jwtlogin.app.core.facade.OtrosCatalogosFacade;
 import com.ejemplo.jwtlogin.dto.model.BaseOperacionResponse;
 import com.ejemplo.jwtlogin.dto.model.otrosCatalogos.ComboTipoCatalogosResponse;
 import com.ejemplo.jwtlogin.dto.model.otrosCatalogos.TiposCatalogosRequest;
+import com.ejemplo.jwtlogin.dto.model.producto.ProductoOtrosCatalogosFileRequest;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoOtrosCatalogosRequest;
 import com.ejemplo.jwtlogin.dto.model.producto.ProductoOtrosCatalogosResponse;
 
@@ -39,6 +42,21 @@ public class OtrosCatalogosRestController {
 	@GetMapping("/initComboTiposCatalogos")
 	public ComboTipoCatalogosResponse initComboTiposCatalogos() {
 		return otrosCatalogosFacade.initComboTiposCatalogos();
+	}	
+	
+	@PostMapping("/save")
+	public BaseOperacionResponse save(@RequestBody ProductoOtrosCatalogosFileRequest request) {
+		return otrosCatalogosFacade.save(request);
+	}	
+
+	@PostMapping("/update")
+	public BaseOperacionResponse update(@RequestBody ProductoOtrosCatalogosFileRequest request) {
+		return otrosCatalogosFacade.update(request);
+	}	
+	
+	@PostMapping("/delete")
+	public BaseOperacionResponse delete(@RequestBody ProductoOtrosCatalogosFileRequest request) {
+		return otrosCatalogosFacade.delete(request);
 	}	
 
 }

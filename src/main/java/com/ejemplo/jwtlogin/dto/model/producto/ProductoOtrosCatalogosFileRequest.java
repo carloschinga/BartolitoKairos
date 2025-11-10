@@ -17,9 +17,6 @@ public class ProductoOtrosCatalogosFileRequest implements Serializable {
 
 	private String codpro; 
 	private String prod; 
-	private Integer stk; 
-	private String lab; 
-	private String dci; 
 	private Double prec; 
 	private Integer codtip; 
 	
