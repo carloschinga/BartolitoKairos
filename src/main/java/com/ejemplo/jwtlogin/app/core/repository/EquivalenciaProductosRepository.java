@@ -1,9 +1,11 @@
 package com.ejemplo.jwtlogin.app.core.repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,7 +52,7 @@ public class EquivalenciaProductosRepository {
 		}
 	}
 
-	public String load() {
+	/*public String load() {
 		String sql = "EXEC sp_bart_catalogo_precio_equivalencia_listar";
 		List<String> result = jdbcTemplate.queryForList(sql, String.class);
 		// Une todas las filas en un solo JSON
@@ -58,9 +60,35 @@ public class EquivalenciaProductosRepository {
 				.map(r -> r.startsWith("[") && r.endsWith("]") ? r.substring(1, r.length() - 1) : r).collect(Collectors.toList());
 
 		return "{\"productos_equivalencia\":[" + String.join(",", cleaned) + "]}";
-	}
-	
-	public String loadKairos() {
+	}*/
+
+    public List<EquivalenciaProductosResponse> loadEquivalencias() {
+
+        String sql = "EXEC sp_bart_catalogo_precio_equivalencia_listar";
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+
+            EquivalenciaProductosResponse r = new EquivalenciaProductosResponse();
+
+            r.setEquivalenciaProductosId(UUID.fromString(rs.getString("equivalencia_productos_id")));
+            r.setCodpro(rs.getString("codpro"));
+            r.setDespro(rs.getString("lolfar_producto"));
+            r.setDeslab(rs.getString("lolfar_laboratorio"));
+            r.setDesgen(rs.getString("lolfar_generico"));
+            r.setProductosId(rs.getString("productos_id"));
+            r.setPresentacionesId(rs.getString("presentaciones_id"));
+            r.setKairosProducto(rs.getString("kairos_producto"));
+            r.setKairosLaboratorio(rs.getString("kairos_laboratorio"));
+            r.setKairosGenerico(rs.getString("kairo_generico"));
+            r.setEstaequi(rs.getString("estaequi"));
+
+            return r;
+        });
+    }
+
+
+
+    public String loadKairos() {
 		String sql = "EXEC sp_bart_catalogo_precio_equivalencia_listar_productos_kairos";
 		List<String> result = jdbcTemplate.queryForList(sql, String.class);
 		// Une todas las filas en un solo JSON

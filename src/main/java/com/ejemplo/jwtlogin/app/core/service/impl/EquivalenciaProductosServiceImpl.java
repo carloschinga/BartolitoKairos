@@ -1,7 +1,10 @@
 package com.ejemplo.jwtlogin.app.core.service.impl;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import com.ejemplo.jwtlogin.dto.model.equivalenciaProductos.EquivalenciaProductosResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +36,18 @@ public class EquivalenciaProductosServiceImpl extends ServiceBase implements Equ
         equivalenciaProductosRepository.deleteproducto(codigo);
     }
 
-	@Override
+    @Override
+    public List<EquivalenciaProductosResponse> loadEquivalencias() {
+        return equivalenciaProductosRepository.loadEquivalencias();
+    }
+
+	/*@Override
 	public JSONArray load() {
 		String response = equivalenciaProductosRepository.load();
 		JSONObject obj = new JSONObject(response);
 		return obj.getJSONArray("productos_equivalencia");
-	}
+	}*/
+
 
 	@Override
 	public JSONArray loadKairos() {

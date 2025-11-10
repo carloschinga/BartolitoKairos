@@ -40,6 +40,7 @@ C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jw
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\dto\model\laboratorio\LaboratorioFileRequest.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\repository\KairosPreciosRepository.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\service\impl\TiposCatalogosServiceImpl.java
+C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\dto\model\equivalenciaProductos\ProductoPreciosResponse.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\api\EquivalenciaProductosRestController.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\facade\KairosAccionTerapeuticasFacade.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\api\KairosProductosRestController.java
@@ -131,7 +132,6 @@ C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jw
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\dto\model\auth\LoginRequest.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\dto\model\BaseOperacionResponse.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\repository\KairosDrogasRepository.java
-C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\config\SwaggerConfig.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\facade\impl\EquivalenciaProductosFacadeImpl.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\app\core\facade\impl\OtrosCatalogosFacadeImpl.java
 C:\Users\Carlos\Documents\Bartolito\BartolitoKairos\src\main\java\com\ejemplo\jwtlogin\dto\model\genericoPreescrito\DiadesResponse.java

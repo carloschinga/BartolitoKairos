@@ -2,11 +2,13 @@ package com.ejemplo.jwtlogin.app.core.facade.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.ejemplo.jwtlogin.app.core.facade.EquivalenciaProductosFacade;
@@ -38,26 +40,26 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
         return new BaseOperacionResponse(Constantes.SUCCESS, "Producto eliminado de equivalencia " + codpro+" equivalencia eliminada exitosamente.");
     }
 
-	@Override
-	public BaseOperacionResponse delete(UUID equivalenciaProductosId) {
-		equivalenciaProductosService.delete(equivalenciaProductosId);
-		return new BaseOperacionResponse(Constantes.SUCCESS, "Equivalencia eliminada exitosamente.");
-	}
+    @Override
+    public List<EquivalenciaProductosResponse> load() {
+        return equivalenciaProductosService.loadEquivalencias();
+    }
 
-	@Override
-	public List<EquivalenciaProductosResponse> load() {
-		List<EquivalenciaProductosResponse> collection = new ArrayList<>();
+    /*@Override
+    public List<EquivalenciaProductosResponse> load() {
 
-		JSONArray listDTO = equivalenciaProductosService.load();
+        List<EquivalenciaProductosResponse> collection = new ArrayList<>();
+        JSONArray listDTO = equivalenciaProductosService.load();
+
 
 		for (int i = 0; i < listDTO.length(); i++) {
 			JSONObject producto = listDTO.getJSONObject(i);
 			EquivalenciaProductosResponse response = new EquivalenciaProductosResponse();
-			response.setEquivalenciaProductosId(UUID.fromString(producto.getString("equivalencia_productos_id")));
-			response.setCodpro(producto.getString("codpro"));
-			response.setDespro(producto.getString("despro"));
+			resp
 			response.setCodlab(producto.getString("codlab"));
-			response.setDeslab(producto.getString("deslab"));
+			response.setDeslab(producto.getStringonse.setEquivalenciaProductosId(UUID.fromString(producto.getString("equivalencia_productos_id")));
+			response.setCodpro(producto.getString("codpro"));
+			response.setDespro(producto.getString("despro"));("deslab"));
 			response.setProductosId(producto.getString("productos_id"));
 			response.setKairosProducto(producto.getString("kairos_producto"));
 			response.setEstaequi(producto.getString("estaequi"));
@@ -66,10 +68,17 @@ public class EquivalenciaProductosFacadeImpl extends FacadeBase implements Equiv
 			response.setKairosId(response.getProductosId() + "-" + response.getPresentacionesId());
 
 			collection.add(response);
-		}
+    }
 
 		return collection;
+    }*/
+
+    @Override
+	public BaseOperacionResponse delete(UUID equivalenciaProductosId) {
+		equivalenciaProductosService.delete(equivalenciaProductosId);
+		return new BaseOperacionResponse(Constantes.SUCCESS, "Equivalencia eliminada exitosamente.");
 	}
+
 
 	@Override
 	public List<ProductoKairosResponse> loadKairos() {
