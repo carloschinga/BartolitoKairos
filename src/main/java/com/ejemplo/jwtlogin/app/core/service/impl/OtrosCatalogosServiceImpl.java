@@ -42,10 +42,7 @@ public class OtrosCatalogosServiceImpl extends ServiceBase implements OtrosCatal
 				ProductoOtrosCatalogosFileRequest request = new ProductoOtrosCatalogosFileRequest();
 				request.setCodpro(getStringCell(row.getCell(0)));
 				request.setProd(getStringCell(row.getCell(1)));
-				request.setStk(getIntegerCell(row.getCell(2)));
-				request.setLab(getStringCell(row.getCell(3)));
-				request.setDci(getStringCell(row.getCell(4)));
-				request.setPrec(getDoubleCell(row.getCell(5)));
+				request.setPrec(getDoubleCell(row.getCell(2)));
 
 				request.setCodtip(t.getCodtip());
 
@@ -136,6 +133,21 @@ public class OtrosCatalogosServiceImpl extends ServiceBase implements OtrosCatal
 		String response = otrosCatalogosRepository.initComboCatalogos();
 		JSONObject obj = new JSONObject(response);
 		return obj.getJSONArray("catalogos");
+	}
+
+	@Override
+	public String save(ProductoOtrosCatalogosFileRequest t) {
+		return otrosCatalogosRepository.save(t);
+	}
+
+	@Override
+	public void update(ProductoOtrosCatalogosFileRequest t) {
+		otrosCatalogosRepository.update(t); 
+	}
+
+	@Override
+	public void delete(ProductoOtrosCatalogosFileRequest t) {
+		otrosCatalogosRepository.delete(t); 
 	}
 
 }
